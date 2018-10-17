@@ -1,0 +1,26 @@
+<input type="text" [(ngModel)]="tamanhoFonte">
+<br>
+
+
+<h3>Styles com property binding (style binding)</h3>
+<button
+  [style.backgroundColor]="ativo ? 'blue' : 'gray'"
+  [style.color]="ativo ? 'white' : 'black'"
+  [style.fontWeight]="ativo ? 'bold' : 'normal'"
+  [style.fontSize]="tamanhoFonte + 'px'"
+  (click)="mudarAtivo()">
+  Mudar atributo 'ativo'
+</button>
+<br>
+
+<h3>Styles com siretiva ngStyle</h3>
+<button
+  [ngStyle]="{
+    backgroundColor: (ativo ? 'blue' : 'gray'),
+    color: (ativo ? 'white' : 'black'),
+    fontWeight: (ativo ? 'bold' : 'normal'),
+    fontSize: tamanhoFonte + 'px'
+  }"
+  (click)="mudarAtivo()">  
+  Mudar atributo 'ativo'
+</button>
