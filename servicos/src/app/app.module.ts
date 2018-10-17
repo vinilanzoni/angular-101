@@ -17,7 +17,7 @@ import { LogService } from './shared/log.service';
   ],
   providers: [
     LogService
-  ],
+  ],  
   bootstrap: [AppComponent]
 })
 export class AppModule { }
