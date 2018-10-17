@@ -1,4 +1,4 @@
-import { CriarCursoModule } from './criar-curso/criar-curso.module';
+import { CriarCursoModule } from "./criar-curso.module";
 
 describe('CriarCursoModule', () => {
   let criarCursoModule: CriarCursoModule;
