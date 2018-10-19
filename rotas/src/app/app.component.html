@@ -9,13 +9,9 @@
     <div class="navbar-nav">
         <a class="nav-item nav-link" routerLink="/login" routerLinkActive="active" >Login</a>
         <a class="nav-item nav-link" routerLink="/cursos" routerLinkActive="active">Cursos</a>
-        <a class="nav-item nav-link" [routerLink]="['curso', idCurso.value]"
-        routerLinkActive="router-link-active" routerLinkActive="active">Curso {{ idCurso.value }}</a>
     </div>
 </div>
 </nav>
 <div class="container">
-    <p>Id do curso:</p>
-    <input type="text" #idCurso>
     <router-outlet></router-outlet>
 </div>
