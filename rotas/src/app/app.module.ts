@@ -9,6 +9,7 @@ import { AppRoutingModule } from './app.routing.module';
 import { HomeComponent } from './home/home.component';
 import { LoginComponent } from './login/login.component';
 import { CursosModule } from './cursos/cursos.module';
+import { AlunosModule } from './alunos/alunos.module';
 
 @NgModule({
   declarations: [
@@ -20,6 +21,7 @@ import { CursosModule } from './cursos/cursos.module';
     BrowserModule,
     // routing,
     CursosModule,
+    AlunosModule,
     AppRoutingModule,
     ButtonsModule.forRoot()
   ],
