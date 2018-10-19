@@ -4,7 +4,8 @@ import { NgModule } from '@angular/core';
 import { ButtonsModule } from 'ngx-bootstrap';
 
 import { AppComponent } from './app.component';
-import { routing } from './app.routing';
+// import { routing } from './app.routing';
+import { AppRoutingModule } from './app.routing.module';
 import { HomeComponent } from './home/home.component';
 import { LoginComponent } from './login/login.component';
 import { CursosComponent } from './cursos/cursos.component';
@@ -23,7 +24,8 @@ import { CursoNaoEncontradoComponent } from './curso-nao-encontrado/curso-nao-en
   ],
   imports: [
     BrowserModule,
-    routing,
+    // routing,
+    AppRoutingModule,
     ButtonsModule.forRoot()
   ],
   providers: [
