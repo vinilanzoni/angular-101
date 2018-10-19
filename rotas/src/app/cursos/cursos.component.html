@@ -6,3 +6,6 @@
     *ngFor="let curso of cursos"
     [routerLink]="['/curso', curso.id]">{{ curso.nome }}</a>
 </div>
+<br>
+<p>Página: {{ pagina }}</p>
+<button class="btn btn-primary" (click)="proximaPagina()">>></button>
