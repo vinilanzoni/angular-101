@@ -13,7 +13,7 @@ export class AlunosGuard implements CanActivateChild {
     
     if(state.url.includes('edit')) {
       alert("Não autorizado!");
-      return false;
+      // return false;    // Comentado para o uso do canDeactivate
     }
     return true;
   }

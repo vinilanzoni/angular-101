@@ -5,12 +5,13 @@ import { AlunosComponent } from './alunos.component';
 import { AlunoDetalheComponent } from './aluno-detalhe/aluno-detalhe.component';
 import { AlunoFormComponent } from './aluno-form/aluno-form.component';
 import { AlunosGuard } from '../guards/alunos.guard';
+import { AlunosDeactivateGuard } from '../guards/alunos-deativate.guard';
 
 const ALUNOS_ROUTES: Routes = [
   { path: '', component: AlunosComponent, canActivateChild: [AlunosGuard], children: [
     { path: 'new', component: AlunoFormComponent },
     { path: ':id', component: AlunoDetalheComponent },
-    { path: ':id/edit', component: AlunoFormComponent }
+    { path: ':id/edit', component: AlunoFormComponent, canDeactivate: [AlunosDeactivateGuard] }
   ] },
 ];
 
