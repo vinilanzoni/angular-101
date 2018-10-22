@@ -1,3 +1,8 @@
-<p>
-  login works!
-</p>
+<form class="form-signin text-center">
+  <h1 class="h3 mb-3 font-weight-normal">Please sign in</h1>
+  <label for="inputUsername" class="sr-only">Email address</label>
+  <input type="text" id="inputUsername" name="inputUsername" class="form-control" [(ngModel)]="user.name" placeholder="Username" required="" autofocus="">
+  <label for="inputPassword" class="sr-only">Password</label>
+  <input type="password" id="inputPassword" name="inputPassword" class="form-control" [(ngModel)]="user.password" placeholder="Password" required="">
+  <button class="btn btn-lg btn-primary btn-block" type="submit" (click)="login()">Sign in</button>
+</form>
