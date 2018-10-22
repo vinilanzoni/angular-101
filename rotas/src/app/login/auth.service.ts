@@ -28,4 +28,8 @@ export class AuthService {
       this.loggedInEmmiter.emit(false);
     }
   }
+
+  isAuthenticated() {
+    return this.usuarioAtenticado;
+  }
 }
