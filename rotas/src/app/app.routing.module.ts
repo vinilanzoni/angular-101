@@ -13,6 +13,8 @@ const APP_ROUTES: Routes = [
   // { path: 'cursos', component: CursosComponent },
   // { path: 'curso/:id', component: CursoDetalheComponent },
   // { path: 'not-found', component: CursoNaoEncontradoComponent }
+  { path: 'cursos', loadChildren: './cursos/cursos.module#CursosModule' },
+  { path: 'alunos', loadChildren: './alunos/alunos.module#AlunosModule' },
 ];
 
 @NgModule({
