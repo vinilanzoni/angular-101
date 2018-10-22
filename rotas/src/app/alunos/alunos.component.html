@@ -1,4 +1,15 @@
-<p>
-  alunos works!
-</p>
-<router-outlet></router-outlet>
+<br>
+<div class="row">
+  <div class="col-sm-4">
+    <h3>Lista de alunos</h3>
+    <br>
+    <div class="list-group">
+      <a class="list-group-item list-group-item-action" *ngFor="let aluno of alunos" [routerLink]="[aluno.id]" routerLinkActive="router-link-active">
+        {{ aluno.nome }}
+      </a>
+    </div>
+  </div>
+  <div class="col-sm-8">
+    <router-outlet></router-outlet>
+  </div>
+</div>

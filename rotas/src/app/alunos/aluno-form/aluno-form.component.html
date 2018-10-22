@@ -1,3 +1,22 @@
-<p>
-  aluno-form works!
-</p>
+<h3>Editar aluno</h3>
+<br>
+<form>
+  <div class="form-group row">
+    <label class="col-sm-2 col-form-label">Id</label>
+    <div class="col-sm-10">
+      <input type="text" readonly class="form-control-plaintext" [value]="aluno.id">
+    </div>
+  </div>
+  <div class="form-group row">
+    <label for="inputName" class="col-sm-2 col-form-label">Name</label>
+    <div class="col-sm-10">
+      <input type="text" class="form-control" name="inputName" id="inputName" [(ngModel)]="aluno.nome">
+    </div>
+  </div>
+  <div class="form-group row">
+    <label for="inputEmail" class="col-sm-2 col-form-label">Email</label>
+    <div class="col-sm-10">
+      <input type="text" class="form-control" name="inputEmail" id="inputEmail" [(ngModel)]="aluno.email">
+    </div>
+  </div>
+</form>
