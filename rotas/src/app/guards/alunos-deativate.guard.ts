@@ -3,16 +3,19 @@ import { ActivatedRouteSnapshot, CanDeactivate, RouterStateSnapshot } from '@ang
 import { Observable } from 'rxjs';
 
 import { AlunoFormComponent } from '../alunos/aluno-form/aluno-form.component';
+import { IFormDeactivate } from './iform-deactivate.guard';
 
 @Injectable({providedIn: 'root'})
-export class AlunosDeactivateGuard implements CanDeactivate<AlunoFormComponent> {
+export class AlunosDeactivateGuard implements CanDeactivate<IFormDeactivate> {
   canDeactivate(
-    component: AlunoFormComponent,
+    component: IFormDeactivate,
     currentRoute: ActivatedRouteSnapshot, 
     currentState: RouterStateSnapshot
   ): Observable<boolean>|Promise<boolean>|boolean {
     console.log("Guarda de desativação");
 
-    return component.canChangeRoute();
+    // return component.canChangeRoute();
+
+    return component.canDeactivate()
   }
 }
