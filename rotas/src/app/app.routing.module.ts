@@ -15,8 +15,19 @@ const APP_ROUTES: Routes = [
   // { path: 'cursos', component: CursosComponent },
   // { path: 'curso/:id', component: CursoDetalheComponent },
   // { path: 'not-found', component: CursoNaoEncontradoComponent }
-  { path: 'cursos', loadChildren: './cursos/cursos.module#CursosModule', canActivate: [AuthGuard], canActivateChild: [CursosGuard] },
-  { path: 'alunos', loadChildren: './alunos/alunos.module#AlunosModule', canActivate: [AuthGuard] }
+  { 
+    path: 'cursos', 
+    loadChildren: './cursos/cursos.module#CursosModule', 
+    canActivate: [AuthGuard], 
+    canActivateChild: [CursosGuard],
+    canLoad: [AuthGuard]
+  },
+  { 
+    path: 'alunos', 
+    loadChildren: './alunos/alunos.module#AlunosModule', 
+    canActivate: [AuthGuard],
+    canLoad: [AuthGuard]
+  }
 ];
 
 @NgModule({
