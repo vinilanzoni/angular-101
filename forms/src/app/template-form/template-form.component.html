@@ -9,5 +9,5 @@
     <input type="email" class="form-control" id="email" name="email" [(ngModel)]="user.email" [class.is-invalid]="!name.valid && name.touched" required email #email="ngModel">
     <div class="invalid-feedback" *ngIf="!email.valid && email.touched">'Email' é obrigatório</div>
   </div>
-  <button class="btn btn-primary" type="submit">Enviar</button>
+  <button class="btn btn-primary" type="submit" [disabled]="!f.valid">Enviar</button>
 </form>
