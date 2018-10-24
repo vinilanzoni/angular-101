@@ -1,14 +1,48 @@
 <form #f="ngForm" (ngSubmit)="onSubmit(f)">
   <div class="form-group">
-    <label for="name">Nome</label>
-    <input type="text" class="form-control" id="name" name="name" [(ngModel)]="user.name" [class.is-invalid]="!name.valid && name.touched" required #name="ngModel">
+    <label for="inputName">Nome</label>
+    <input type="text" class="form-control" id="inputName" name="inputName" [(ngModel)]="user.name" [class.is-invalid]="!name.valid && name.touched" required #name="ngModel">
     <div class="invalid-feedback" *ngIf="!name.valid && name.touched">'Nome' é obrigatório</div>
   </div>
   <div class="form-group">
-    <label for="email">Email</label>
-    <input type="email" class="form-control" id="email" name="email" [(ngModel)]="user.email" [class.is-invalid]="!name.valid && name.touched" required email #email="ngModel">
+    <label for="inputEmail">Email</label>
+    <input type="email" class="form-control" id="inputEmail" name="inputEmail" [(ngModel)]="user.email" [class.is-invalid]="!email.valid && email.touched" required email #email="ngModel">
     <div class="invalid-feedback" *ngIf="!email.valid && email.touched">'Email' é obrigatório</div>
   </div>
-  <button class="btn btn-primary" type="submit" [disabled]="!f.valid">Enviar</button>
+  <div class="form-row">
+    <div class="form-group col-4">
+      <label for="inputCep">CEP</label>
+      <input type="text" class="form-control" id="inputCep" name="inputCep" ngModel [class.is-invalid]="!cep.valid && cep.touched" required #cep="ngModel">
+      <div class="invalid-feedback" *ngIf="!cep.valid && cep.touched">'CEP' é obrigatório</div>
+    </div>
+    <div class="form-group col-2">
+      <label for="inputNumero">Número</label>
+      <input type="number" class="form-control" id="inputNumero" name="inputNumero" ngModel [class.is-invalid]="!numero.valid && numero.touched" required #numero="ngModel">
+      <div class="invalid-feedback" *ngIf="!numero.valid && numero.touched">'Número' é obrigatório</div>
+    </div>
+    <div class="form-group col-6">
+      <label for="inputComplemento">Complemento</label>
+      <input type="text" class="form-control" id="inputComplemento" name="inputComplemento">
+    </div>
+  </div>
+  <div class="form-group">
+      <label for="inputLogradouro">Logradouro</label>
+      <input type="text" class="form-control" id="inputLogradouro" name="inputLogradouro" disabled>
+  </div>
+  <div class="form-row">
+    <div class="form-group col-6">
+      <label for="inputBairro">Bairro</label>
+      <input type="text" class="form-control" id="inputBairro" name="inputBairro" disabled>
+    </div>
+    <div class="form-group col-4">
+      <label for="inputCidade">Cidade</label>
+      <input type="text" class="form-control" id="inputCidade" name="inputCidade" disabled>
+    </div>
+    <div class="form-group col-2">
+      <label for="inputEstado">Estado</label>
+      <input type="number" class="form-control" id="inputEstado" name="inputEstado" disabled>
+    </div>
+  </div>
+  <button class="btn btn-primary btn-block" type="submit" [disabled]="!f.valid">Enviar</button>
   <app-form-debug [form]="f"></app-form-debug>
 </form>
