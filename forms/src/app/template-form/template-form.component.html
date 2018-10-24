@@ -9,38 +9,40 @@
     <input type="email" class="form-control" id="inputEmail" name="inputEmail" [(ngModel)]="user.email" [class.is-invalid]="inputErrored(email)" required email #email="ngModel">
     <app-form-control-error [showError]="inputErrored(email)" errorMessage="'Email' é obrigatório"></app-form-control-error>
   </div>
-  <div class="form-row">
-    <div class="form-group col-4">
-      <label for="inputCep">CEP</label>
-      <input type="text" class="form-control" id="inputCep" name="inputCep" ngModel [class.is-invalid]="inputErrored(cep)" required #cep="ngModel">
-      <app-form-control-error [showError]="inputErrored(cep)" errorMessage="'CEP' é obrigatório"></app-form-control-error>
+  <div ngModelGroup="endereco">
+    <div class="form-row">
+      <div class="form-group col-4">
+        <label for="inputCep">CEP</label>
+        <input type="text" class="form-control" id="inputCep" name="inputCep" ngModel [class.is-invalid]="inputErrored(cep)" required #cep="ngModel">
+        <app-form-control-error [showError]="inputErrored(cep)" errorMessage="'CEP' é obrigatório"></app-form-control-error>
+      </div>
+      <div class="form-group col-2">
+        <label for="inputNumero">Número</label>
+        <input type="number" class="form-control" id="inputNumero" name="inputNumero" ngModel [class.is-invalid]="inputErrored(numero)" required #numero="ngModel">
+        <app-form-control-error [showError]="inputErrored(numero)" errorMessage="'Número' é obrigatório"></app-form-control-error>
+      </div>
+      <div class="form-group col-6">
+        <label for="inputComplemento">Complemento</label>
+        <input type="text" class="form-control" id="inputComplemento" name="inputComplemento" ngModel>
+      </div>
     </div>
-    <div class="form-group col-2">
-      <label for="inputNumero">Número</label>
-      <input type="number" class="form-control" id="inputNumero" name="inputNumero" ngModel [class.is-invalid]="inputErrored(numero)" required #numero="ngModel">
-      <app-form-control-error [showError]="inputErrored(numero)" errorMessage="'Número' é obrigatório"></app-form-control-error>
+    <div class="form-group">
+        <label for="inputLogradouro">Logradouro</label>
+        <input type="text" class="form-control" id="inputLogradouro" name="inputLogradouro" ngModel disabled>
     </div>
-    <div class="form-group col-6">
-      <label for="inputComplemento">Complemento</label>
-      <input type="text" class="form-control" id="inputComplemento" name="inputComplemento">
-    </div>
-  </div>
-  <div class="form-group">
-      <label for="inputLogradouro">Logradouro</label>
-      <input type="text" class="form-control" id="inputLogradouro" name="inputLogradouro" disabled>
-  </div>
-  <div class="form-row">
-    <div class="form-group col-6">
-      <label for="inputBairro">Bairro</label>
-      <input type="text" class="form-control" id="inputBairro" name="inputBairro" disabled>
-    </div>
-    <div class="form-group col-4">
-      <label for="inputCidade">Cidade</label>
-      <input type="text" class="form-control" id="inputCidade" name="inputCidade" disabled>
-    </div>
-    <div class="form-group col-2">
-      <label for="inputEstado">Estado</label>
-      <input type="number" class="form-control" id="inputEstado" name="inputEstado" disabled>
+    <div class="form-row">
+      <div class="form-group col-6">
+        <label for="inputBairro">Bairro</label>
+        <input type="text" class="form-control" id="inputBairro" name="inputBairro" ngModel disabled>
+      </div>
+      <div class="form-group col-4">
+        <label for="inputCidade">Cidade</label>
+        <input type="text" class="form-control" id="inputCidade" name="inputCidade" ngModel disabled>
+      </div>
+      <div class="form-group col-2">
+        <label for="inputEstado">Estado</label>
+        <input type="number" class="form-control" id="inputEstado" name="inputEstado" ngModel disabled>
+      </div>
     </div>
   </div>
   <button class="btn btn-primary btn-block" type="submit" [disabled]="!f.valid">Enviar</button>
