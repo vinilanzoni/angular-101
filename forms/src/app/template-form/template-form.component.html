@@ -1,24 +1,24 @@
 <form #f="ngForm" (ngSubmit)="onSubmit(f)">
   <div class="form-group">
     <label for="inputName">Nome</label>
-    <input type="text" class="form-control" id="inputName" name="inputName" [(ngModel)]="user.name" [class.is-invalid]="!name.valid && name.touched" required #name="ngModel">
-    <div class="invalid-feedback" *ngIf="!name.valid && name.touched">'Nome' é obrigatório</div>
+    <input type="text" class="form-control" id="inputName" name="inputName" [(ngModel)]="user.name" [class.is-invalid]="inputErrored(name)" required #name="ngModel">
+    <app-form-control-error [showError]="inputErrored(name)" errorMessage="'Nome' é obrigatório"></app-form-control-error>
   </div>
   <div class="form-group">
     <label for="inputEmail">Email</label>
-    <input type="email" class="form-control" id="inputEmail" name="inputEmail" [(ngModel)]="user.email" [class.is-invalid]="!email.valid && email.touched" required email #email="ngModel">
-    <div class="invalid-feedback" *ngIf="!email.valid && email.touched">'Email' é obrigatório</div>
+    <input type="email" class="form-control" id="inputEmail" name="inputEmail" [(ngModel)]="user.email" [class.is-invalid]="inputErrored(email)" required email #email="ngModel">
+    <app-form-control-error [showError]="inputErrored(email)" errorMessage="'Email' é obrigatório"></app-form-control-error>
   </div>
   <div class="form-row">
     <div class="form-group col-4">
       <label for="inputCep">CEP</label>
-      <input type="text" class="form-control" id="inputCep" name="inputCep" ngModel [class.is-invalid]="!cep.valid && cep.touched" required #cep="ngModel">
-      <div class="invalid-feedback" *ngIf="!cep.valid && cep.touched">'CEP' é obrigatório</div>
+      <input type="text" class="form-control" id="inputCep" name="inputCep" ngModel [class.is-invalid]="inputErrored(cep)" required #cep="ngModel">
+      <app-form-control-error [showError]="inputErrored(cep)" errorMessage="'CEP' é obrigatório"></app-form-control-error>
     </div>
     <div class="form-group col-2">
       <label for="inputNumero">Número</label>
-      <input type="number" class="form-control" id="inputNumero" name="inputNumero" ngModel [class.is-invalid]="!numero.valid && numero.touched" required #numero="ngModel">
-      <div class="invalid-feedback" *ngIf="!numero.valid && numero.touched">'Número' é obrigatório</div>
+      <input type="number" class="form-control" id="inputNumero" name="inputNumero" ngModel [class.is-invalid]="inputErrored(numero)" required #numero="ngModel">
+      <app-form-control-error [showError]="inputErrored(numero)" errorMessage="'Número' é obrigatório"></app-form-control-error>
     </div>
     <div class="form-group col-6">
       <label for="inputComplemento">Complemento</label>

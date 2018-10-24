@@ -17,6 +17,10 @@ export class TemplateFormComponent implements OnInit {
   ngOnInit() {
   }
 
+  inputErrored(field) {
+    return !field.valid && field.touched;
+  }
+
   onSubmit(form) {
     console.log(form);
     console.log(this.user);
