@@ -10,4 +10,5 @@
     <div class="invalid-feedback" *ngIf="!email.valid && email.touched">'Email' é obrigatório</div>
   </div>
   <button class="btn btn-primary" type="submit" [disabled]="!f.valid">Enviar</button>
+  <app-form-debug [form]="f"></app-form-debug>
 </form>
