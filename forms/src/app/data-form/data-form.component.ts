@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, FormBuilder, Validators } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
-import { headersToString } from 'selenium-webdriver/http';
 
 @Component({
   selector: "app-data-form",
@@ -36,17 +35,29 @@ export class DataFormComponent implements OnInit {
 
   onSubmit() {
     console.log(this.formulario);
-    this.http
-      .post("https://httpbin.org/post", JSON.stringify(this.formulario.value))
-      .subscribe(
-        res => {
-          console.log(res);
-          this.formulario.reset();
-        },
-        (err: any) => {
-          console.log(err);
-        }
-      );
+    if(this.formulario.valid) {
+      this.http
+        .post("https://httpbin.org/post", JSON.stringify(this.formulario.value))
+        .subscribe((res) => {
+            console.log(res);
+            this.formulario.reset();
+          }, (err: any) => {
+            console.log(err);
+          });
+    } else {
+      console.log("Formulário inválido")
+      this.checkValidations(this.formulario);
+    }
+  }
+
+  checkValidations(formGroup: FormGroup) {
+    Object.keys(formGroup.controls).forEach(key => {
+      const control = formGroup.get(key);
+      control.markAsTouched();
+      if(control instanceof FormGroup) {
+        this.checkValidations(control);
+      }
+    });
   }
 
   cancel() {
