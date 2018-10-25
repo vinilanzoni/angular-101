@@ -13,7 +13,7 @@
     <div class="form-row">
       <div class="form-group col-4">
         <label for="inputCep">CEP</label>
-        <input type="text" class="form-control" id="inputCep" name="inputCep" ngModel [class.is-invalid]="inputErrored(cep)" required #cep="ngModel" (blur)="consultaCEP(cep.value)">
+        <input type="text" class="form-control" id="inputCep" name="inputCep" ngModel [class.is-invalid]="inputErrored(cep)" required #cep="ngModel" (blur)="consultaCEP(cep.value, f)" maxlength="8">
         <app-form-control-error [showError]="inputErrored(cep)" errorMessage="'CEP' é obrigatório"></app-form-control-error>
       </div>
       <div class="form-group col-2">
@@ -28,20 +28,20 @@
     </div>
     <div class="form-group">
         <label for="inputLogradouro">Logradouro</label>
-        <input type="text" class="form-control" id="inputLogradouro" name="inputLogradouro" ngModel disabled>
+        <input type="text" class="form-control" id="inputLogradouro" name="inputLogradouro" ngModel readonly>
     </div>
     <div class="form-row">
       <div class="form-group col-6">
         <label for="inputBairro">Bairro</label>
-        <input type="text" class="form-control" id="inputBairro" name="inputBairro" ngModel disabled>
+        <input type="text" class="form-control" id="inputBairro" name="inputBairro" ngModel readonly>
       </div>
       <div class="form-group col-4">
         <label for="inputCidade">Cidade</label>
-        <input type="text" class="form-control" id="inputCidade" name="inputCidade" ngModel disabled>
+        <input type="text" class="form-control" id="inputCidade" name="inputCidade" ngModel readonly>
       </div>
       <div class="form-group col-2">
         <label for="inputEstado">Estado</label>
-        <input type="number" class="form-control" id="inputEstado" name="inputEstado" ngModel disabled>
+        <input type="text" class="form-control" id="inputEstado" name="inputEstado" ngModel readonly>
       </div>
     </div>
   </div>
