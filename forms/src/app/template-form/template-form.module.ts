@@ -3,18 +3,16 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 
 import { TemplateFormComponent } from './template-form.component';
-import { FormDebugComponent } from '../form-debug/form-debug.component';
-import { FormControlErrorComponent } from '../form-control-error/form-control-error.component';
+import { SharedModule } from '../shared/shared.module';
 
 @NgModule({
   imports: [
     CommonModule,
-    FormsModule
+    FormsModule,
+    SharedModule
   ],
   declarations: [
     TemplateFormComponent,
-    FormControlErrorComponent,
-    FormDebugComponent
   ]
 })
 export class TemplateFormModule { }
