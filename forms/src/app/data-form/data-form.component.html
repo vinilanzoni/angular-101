@@ -1,15 +1,18 @@
 <form [formGroup]="formulario" (ngSubmit)="onSubmit()">
   <div class="form-group">
     <label for="inputName">Nome</label>
-    <input type="text" class="form-control" id="inputName" formControlName="inputName">
+    <input type="text" class="form-control" id="inputName" formControlName="inputName" [class.is-invalid]="inputErrored('inputName')">
+    <app-form-control-error [showError]="inputErrored('inputName')" errorMessage="'Nome' é obrigatório"></app-form-control-error>
   </div>
   <div class="form-group">
     <label for="inputEmail">Email</label>
-    <input type="email" class="form-control" id="inputEmail" formControlName="inputEmail">
+    <input type="email" class="form-control" id="inputEmail" formControlName="inputEmail" [class.is-invalid]="inputErrored('inputEmail')">
+    <app-form-control-error [showError]="inputErrored('inputEmail')" errorMessage="'Email' é obrigatório"></app-form-control-error>
+    <app-form-control-error [showError]="invalidEmail('inputEmail')" errorMessage="'Email' inválido"></app-form-control-error>
   </div>
   <div class="form-row">
-    <div class="col"><button class="btn btn-primary btn-block" type="submit">Enviar</button></div>
-    <div class="col"><button class="btn btn-block" type="button" (click)="cancel()">Cancelar</button></div>
+    <div class="col"><button class="btn btn-primary btn-block" type="submit" [disabled]="!formulario.valid">Enviar</button></div>
+    <div class="col"><button class="btn btn-outline-primary btn-block" type="button" (click)="cancel()">Cancelar</button></div>
   </div>
 </form>
 <app-form-debug [form]="formulario"></app-form-debug>
