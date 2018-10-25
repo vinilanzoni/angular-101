@@ -52,6 +52,7 @@ export class TemplateFormComponent implements OnInit {
       .post("https://httpbin.org/post", JSON.stringify(form.value))
       .subscribe(res => {
         console.log(res);
+        form.form.reset();
       });
   }
 
