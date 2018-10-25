@@ -10,6 +10,40 @@
     <app-form-control-error [showError]="inputErrored('inputEmail')" errorMessage="'Email' é obrigatório"></app-form-control-error>
     <app-form-control-error [showError]="invalidEmail('inputEmail')" errorMessage="'Email' inválido"></app-form-control-error>
   </div>
+      <div class="form-row">
+        <div class="form-group col-4">
+          <label for="inputCep">CEP</label>
+          <input type="text" class="form-control" id="inputCep" formControlName="inputCep" [class.is-invalid]="inputErrored('inputCep')">
+          <app-form-control-error [showError]="inputErrored('inputCep')" errorMessage="'CEP' é obrigatório"></app-form-control-error>
+        </div>
+        <div class="form-group col-2">
+          <label for="inputNumero">Número</label>
+          <input type="number" class="form-control" id="inputNumero" formControlName="inputNumero" [class.is-invalid]="inputErrored('inputNumero')">
+          <app-form-control-error [showError]="inputErrored('inputNumero')" errorMessage="'Número' é obrigatório"></app-form-control-error>
+        </div>
+        <div class="form-group col-6">
+          <label for="inputComplemento">Complemento</label>
+          <input type="text" class="form-control" id="inputComplemento" formControlName="inputComplemento">
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="inputLogradouro">Logradouro</label>
+        <input type="text" class="form-control" id="inputLogradouro" formControlName="inputLogradouro" readonly>
+      </div>
+      <div class="form-row">
+        <div class="form-group col-6">
+          <label for="inputBairro">Bairro</label>
+          <input type="text" class="form-control" id="inputBairro" formControlName="inputBairro" readonly>
+        </div>
+        <div class="form-group col-4">
+          <label for="inputCidade">Cidade</label>
+          <input type="text" class="form-control" id="inputCidade" formControlName="inputCidade" readonly>
+        </div>
+        <div class="form-group col-2">
+          <label for="inputEstado">Estado</label>
+          <input type="text" class="form-control" id="inputEstado" formControlName="inputEstado" readonly>
+        </div>
+      </div>
   <div class="form-row">
     <div class="col"><button class="btn btn-primary btn-block" type="submit" [disabled]="!formulario.valid">Enviar</button></div>
     <div class="col"><button class="btn btn-outline-primary btn-block" type="button" (click)="cancel()">Cancelar</button></div>

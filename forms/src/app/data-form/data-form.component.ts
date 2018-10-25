@@ -20,7 +20,14 @@ export class DataFormComponent implements OnInit {
 
     this.formulario = this.formBuilder.group({
       inputName: [null, [Validators.required, Validators.minLength(3)]],
-      inputEmail: [null, [Validators.required, Validators.email]]
+      inputEmail: [null, [Validators.required, Validators.email]],
+      inputCep: [null, [Validators.required]],
+      inputNumero: [null, [Validators.required]],
+      inputComplemento: [null],
+      inputLogradouro: [null],
+      inputBairro: [null],
+      inputCidade: [null],
+      inputEstado: [null]
     });
   }
 
@@ -43,7 +50,7 @@ export class DataFormComponent implements OnInit {
     this.formulario.reset();
   }
 
-  inputErrored(field) {
+  inputErrored(field: string) {
     return !this.formulario.get(field).valid && this.formulario.get(field).touched;
   }
 
