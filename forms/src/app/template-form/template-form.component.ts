@@ -48,8 +48,11 @@ export class TemplateFormComponent implements OnInit {
   }
 
   onSubmit(form) {
-    console.log(form);
-    console.log(this.user);
+    this.http
+      .post("https://httpbin.org/post", JSON.stringify(form.value))
+      .subscribe(res => {
+        console.log(res);
+      });
   }
 
 }
