@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, FormBuilder, Validators } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
+import { StatesService } from '../shared/services/states.service';
+import { State } from '../shared/models/state';
 
 @Component({
   selector: "app-data-form",
@@ -9,14 +11,24 @@ import { HttpClient } from '@angular/common/http';
 })
 export class DataFormComponent implements OnInit {
   formulario: FormGroup;
+  estados: State[];
 
-  constructor(private formBuilder: FormBuilder, private http: HttpClient) {}
+  constructor(
+    private formBuilder: FormBuilder, 
+    private http: HttpClient,
+    private statesService: StatesService
+    ) {}
 
   ngOnInit() {
     // this.formulario = new FormGroup({
     //   inputNome: new FormControl(null),
     //   inputEmail: new FormControl(null)
     // });
+
+    this.statesService.list().subscribe((dados: State[]) => {
+      console.log(dados);
+      this.estados = dados;
+    })
 
     this.formulario = this.formBuilder.group({
       inputName: [null, [Validators.required, Validators.minLength(3)]],
