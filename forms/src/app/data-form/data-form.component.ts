@@ -17,6 +17,7 @@ export class DataFormComponent implements OnInit {
   estados: Observable<State[]>;
   cargos: any[];
   tecnologias: any[];
+  newsletterOpts: any[];
 
   constructor(
     private formBuilder: FormBuilder,
@@ -43,6 +44,8 @@ export class DataFormComponent implements OnInit {
 
     this.tecnologias = this.employeeService.getKnowledges();
 
+    this.newsletterOpts = [{ name: "Yes", value: "yes" }, { name: "No", value: "no" }];
+
     this.formulario = this.formBuilder.group({
       inputName: [null, [Validators.required, Validators.minLength(3)]],
       inputEmail: [null, [Validators.required, Validators.email]],
@@ -56,7 +59,8 @@ export class DataFormComponent implements OnInit {
         selectEstado: [null]
       }),
       selectCargo: [null],
-      selectTecnologias: [null]
+      selectTecnologias: [null],
+      radioNewsletter: ['yes']
     });
   }
 
