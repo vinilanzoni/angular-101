@@ -52,6 +52,7 @@ export class DataFormComponent implements OnInit {
     this.formulario = this.formBuilder.group({
       inputName: [null, [Validators.required, Validators.minLength(3)]],
       inputEmail: [null, [Validators.required, Validators.email]],
+      inputConfirmarEmail: [null, [Validators.required, Validators.email, FormValidations.equalsTo('inputEmail')]],
       groupEndereco: this.formBuilder.group({
         inputCep: [null, [Validators.required, FormValidations.cepValidor]],
         inputNumero: [null, [Validators.required]],
@@ -63,8 +64,8 @@ export class DataFormComponent implements OnInit {
       }),
       selectCargo: [null],
       selectTecnologias: [null],
-      radioNewsletter: ['yes'],
-      checkTermos: [null, Validators.pattern('true')],
+      radioNewsletter: ["yes"],
+      checkTermos: [null, Validators.pattern("true")],
       checkCursos: this.buildCourses()
     });
   }
