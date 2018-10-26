@@ -81,6 +81,15 @@
     </div>
   </div>
   <div class="form-row">
+    <div class="form-group col">
+      <label>Cursos desejados:</label><br>
+        <div class="form-check form-check-inline" formArrayName="checkCursos" *ngFor="let item of formulario.get('checkCursos').controls; let i = index" >
+          <input class="form-check-input" type="checkbox" [formControlName]="i">
+          <label class="form-check-label">{{ cursos[i] }}</label>
+        </div>
+    </div>
+  </div>
+  <div class="form-row">
     <div class="col"><button class="btn btn-primary btn-block" type="submit">Enviar</button></div>
     <div class="col"><button class="btn btn-outline-primary btn-block" type="button" (click)="cancel()">Cancelar</button></div>
     <div class="col"><button class="btn btn-outline-secondary btn-block" type="button" (click)="setCargo()">Cargo</button></div>

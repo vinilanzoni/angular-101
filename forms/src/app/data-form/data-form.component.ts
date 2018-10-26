@@ -18,6 +18,7 @@ export class DataFormComponent implements OnInit {
   cargos: any[];
   tecnologias: any[];
   newsletterOpts: any[];
+  cursos = ['Angular', 'React', 'Spring', '.Net'];
 
   constructor(
     private formBuilder: FormBuilder,
@@ -45,6 +46,7 @@ export class DataFormComponent implements OnInit {
     this.tecnologias = this.employeeService.getKnowledges();
 
     this.newsletterOpts = [{ name: "Yes", value: "yes" }, { name: "No", value: "no" }];
+    this.cursos = ['Angular', 'React', 'Spring', '.Net'];
 
     this.formulario = this.formBuilder.group({
       inputName: [null, [Validators.required, Validators.minLength(3)]],
@@ -61,15 +63,31 @@ export class DataFormComponent implements OnInit {
       selectCargo: [null],
       selectTecnologias: [null],
       radioNewsletter: ['yes'],
-      checkTermos: [null, Validators.pattern('true')]
+      checkTermos: [null, Validators.pattern('true')],
+      checkCursos: this.buildCourses()
     });
   }
 
+  buildCourses() {
+    let values = this.cursos.map((v) => {
+      new FormControl(false);
+    });
+    return this.formBuilder.array(values);
+  }
+
   onSubmit() {
-    console.log(this.formulario);
+    let valueSubmit = Object.assign({}, this.formulario.value);
+    valueSubmit = Object.assign(valueSubmit, {
+      checkCursos: valueSubmit.checkCursos
+        .map((v, i) => v ? this.cursos[i] : null )
+        .filter(v => v != null)
+    });
+
+    console.log(valueSubmit);
+
     if (this.formulario.valid) {
       this.http
-        .post("https://httpbin.org/post", JSON.stringify(this.formulario.value))
+        .post("https://httpbin.org/post", JSON.stringify(valueSubmit))
         .subscribe(
           res => {
             console.log(res);
