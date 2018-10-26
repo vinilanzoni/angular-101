@@ -15,7 +15,8 @@
         <div class="form-group col-4">
           <label for="inputCep">CEP</label>
           <input type="text" class="form-control" id="inputCep" formControlName="inputCep" [class.is-invalid]="inputErrored('groupEndereco.inputCep')" (blur)="consultaCEP()">
-          <app-form-control-error [showError]="inputErrored('groupEndereco.inputCep')" errorMessage="'CEP' é obrigatório"></app-form-control-error>
+          <app-form-control-error [showError]="checkRequired('groupEndereco.inputCep')" errorMessage="'CEP' é obrigatório"></app-form-control-error>
+          <app-form-control-error [showError]="formulario.get('groupEndereco.inputCep').hasError('cepInvalido')" errorMessage="'CEP' inválido"></app-form-control-error>
         </div>
         <div class="form-group col-2">
           <label for="inputNumero">Número</label>
@@ -83,7 +84,7 @@
   <div class="form-row">
     <div class="form-group col">
       <label>Cursos desejados:</label><br>
-      <div class="form-check form-check-inline" formArrayName="checkCursos" *ngFor="let item of formulario.get('checkCursos').controls; let i = index" >
+      <div class="form-check form-check-inline" formArrayName="checkCursos" *ngFor="let item of formulario.controls['checkCursos'].controls; let i = index" >
         <input class="form-check-input" type="checkbox" [formControlName]="i" [class.is-invalid]="inputErrored('checkCursos')">
         <label class="form-check-label">{{ cursos[i] }}</label>
       </div>

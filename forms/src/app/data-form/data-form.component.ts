@@ -53,7 +53,7 @@ export class DataFormComponent implements OnInit {
       inputName: [null, [Validators.required, Validators.minLength(3)]],
       inputEmail: [null, [Validators.required, Validators.email]],
       groupEndereco: this.formBuilder.group({
-        inputCep: [null, [Validators.required, Validators.maxLength(8)]],
+        inputCep: [null, [Validators.required, FormValidations.cepValidor]],
         inputNumero: [null, [Validators.required]],
         inputComplemento: [null],
         inputLogradouro: [null],
@@ -122,6 +122,10 @@ export class DataFormComponent implements OnInit {
     return (
       !this.formulario.get(field).valid && this.formulario.get(field).touched
     );
+  }
+
+  checkRequired(field: string) {
+    return (this.formulario.get(field).hasError('required') && this.formulario.get(field).touched);
   }
 
   invalidEmail(field) {
