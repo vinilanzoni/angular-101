@@ -1,11 +1,12 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormControl, FormBuilder, Validators } from '@angular/forms';
+import { FormGroup, FormControl, FormBuilder, Validators, FormArray } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
 import { StatesService } from '../shared/services/states.service';
 import { State } from '../shared/models/state';
 import { ConsultaCepService } from '../shared/services/consulta-cep.service';
 import { Observable } from 'rxjs';
 import { EmployeeService } from '../shared/services/employee.service';
+import { FormValidations } from '../shared/form-validations';
 
 @Component({
   selector: "app-data-form",
@@ -72,7 +73,7 @@ export class DataFormComponent implements OnInit {
     let values = this.cursos.map((v) => {
       new FormControl(false);
     });
-    return this.formBuilder.array(values);
+    return this.formBuilder.array(values, FormValidations.requiredMinCheckbox(1));
   }
 
   onSubmit() {

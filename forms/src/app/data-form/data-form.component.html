@@ -83,10 +83,12 @@
   <div class="form-row">
     <div class="form-group col">
       <label>Cursos desejados:</label><br>
-        <div class="form-check form-check-inline" formArrayName="checkCursos" *ngFor="let item of formulario.get('checkCursos').controls; let i = index" >
-          <input class="form-check-input" type="checkbox" [formControlName]="i">
-          <label class="form-check-label">{{ cursos[i] }}</label>
-        </div>
+      <div class="form-check form-check-inline" formArrayName="checkCursos" *ngFor="let item of formulario.get('checkCursos').controls; let i = index" >
+        <input class="form-check-input" type="checkbox" [formControlName]="i" [class.is-invalid]="inputErrored('checkCursos')">
+        <label class="form-check-label">{{ cursos[i] }}</label>
+      </div>
+      <br>
+      <app-form-control-error [showError]="inputErrored('checkCursos')" errorMessage="Selecione no minimo uma opção"></app-form-control-error>
     </div>
   </div>
   <div class="form-row">
