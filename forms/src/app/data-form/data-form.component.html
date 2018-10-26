@@ -70,6 +70,17 @@
     </div>
   </div>
   <div class="form-row">
+    <div class="form-group col">
+      <div class="form-check">
+        <input class="form-check-input" type="checkbox" value="" id="checkTermos" formControlName="checkTermos" [class.is-invalid]="inputErrored('checkTermos')">
+        <label class="form-check-label" for="checkTermos">
+          Li e concordo com os termos de uso
+        </label>
+      </div>
+      <app-form-control-error [showError]="inputErrored('checkTermos')" errorMessage="É necessário aceitar os termos"></app-form-control-error>
+    </div>
+  </div>
+  <div class="form-row">
     <div class="col"><button class="btn btn-primary btn-block" type="submit">Enviar</button></div>
     <div class="col"><button class="btn btn-outline-primary btn-block" type="button" (click)="cancel()">Cancelar</button></div>
     <div class="col"><button class="btn btn-outline-secondary btn-block" type="button" (click)="setCargo()">Cargo</button></div>

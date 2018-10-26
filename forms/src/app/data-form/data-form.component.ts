@@ -60,7 +60,8 @@ export class DataFormComponent implements OnInit {
       }),
       selectCargo: [null],
       selectTecnologias: [null],
-      radioNewsletter: ['yes']
+      radioNewsletter: ['yes'],
+      checkTermos: [null, Validators.pattern('true')]
     });
   }
 
