@@ -49,17 +49,24 @@
       </div>
   </div>
   <div class="form-row">
-    <div class="form-group col-12">
+    <div class="form-group col">
       <label for="selectCargo">Cargo</label>
       <select class="custom-select" id="selectCargo" formControlName="selectCargo" [compareWith]="checkFunctions">
         <option *ngFor="let cargo of cargos" [ngValue]="cargo">{{ cargo.descricao }}</option>
+      </select>
+    </div>
+    <div class="form-group col">
+      <label for="selectTecnologias">Tecnologias</label>
+      <select multiple class="custom-select" id="selectTecnologias" formControlName="selectTecnologias">
+        <option *ngFor="let tec of tecnologias" [value]="tec.nome">{{ tec.descricao }}</option>
       </select>
     </div>
   </div>
   <div class="form-row">
     <div class="col"><button class="btn btn-primary btn-block" type="submit">Enviar</button></div>
     <div class="col"><button class="btn btn-outline-primary btn-block" type="button" (click)="cancel()">Cancelar</button></div>
-    <div class="col"><button class="btn btn-outline-primary btn-block" type="button" (click)="setCargo()">Cargo</button></div>
+    <div class="col"><button class="btn btn-outline-secondary btn-block" type="button" (click)="setCargo()">Cargo</button></div>
+    <div class="col"><button class="btn btn-outline-secondary btn-block" type="button" (click)="setTecnologias()">Tecnologias</button></div>
   </div>
 </form>
 <app-form-debug [form]="formulario"></app-form-debug>

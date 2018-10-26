@@ -14,4 +14,15 @@ export class EmployeeService {
       { nome: 'Desenvolvedor', nivel: 'Sênior', descricao: 'Desenvolvedor Sênior' }
     ]
   }
+
+  getKnowledges() {
+    return [
+      { nome: "java", descricao: 'Java' },
+      { nome: "javascript", descricao: 'JavaScript' },
+      { nome: "php", descricao: 'PHP' },
+      { nome: "ruby", descricao: 'Ruby' },
+      { nome: "csharp", descricao: 'C#' },
+      { nome: "go", descricao: 'Go' }
+    ];
+  }
 }
