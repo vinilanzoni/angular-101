@@ -3,6 +3,7 @@ import { FormGroup, FormControl, FormBuilder, Validators } from '@angular/forms'
 import { HttpClient } from '@angular/common/http';
 import { StatesService } from '../shared/services/states.service';
 import { State } from '../shared/models/state';
+import { ConsultaCepService } from '../shared/services/consulta-cep.service';
 
 @Component({
   selector: "app-data-form",
@@ -16,7 +17,8 @@ export class DataFormComponent implements OnInit {
   constructor(
     private formBuilder: FormBuilder, 
     private http: HttpClient,
-    private statesService: StatesService
+    private statesService: StatesService,
+    private cepService: ConsultaCepService
     ) {}
 
   ngOnInit() {
@@ -104,16 +106,10 @@ export class DataFormComponent implements OnInit {
 
   consultaCEP() {
     let cep = this.formulario.get("groupEndereco.inputCep").value;
-    if (cep != null && cep !== "") {
-      let validacep = /^[0-9]{8}$/;
-      if (validacep.test(cep)) {
-        this.http
-          .get(`https://viacep.com.br/ws/${cep}/json/`)
-          .subscribe(dados => {
-            console.log(dados);
-            this.populateForm(dados);
-          });
-      }
-    }
+
+    this.cepService.consultaCEP(cep).subscribe((dados) => {
+      this.populateForm(dados);
+    });
+
   }
 }
