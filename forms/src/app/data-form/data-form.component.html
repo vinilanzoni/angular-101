@@ -42,7 +42,9 @@
         </div>
         <div class="form-group col-2">
           <label for="inputEstado">Estado</label>
-          <input type="text" class="form-control" id="inputEstado" formControlName="inputEstado" readonly>
+          <select class="custom-select" id="selectEstado" formControlName="selectEstado">
+            <option *ngFor="let estado of estados | async" [value]="estado.sigla">{{ estado.nome }}</option>
+          </select>
         </div>
       </div>
   </div>

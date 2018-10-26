@@ -3,6 +3,8 @@ import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from "@angular/common/http";
 
+import { BsDropdownModule } from "ngx-bootstrap";
+
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { TemplateFormModule } from './template-form/template-form.module';
@@ -18,6 +20,7 @@ import { DataFormModule } from './data-form/data-form.module';
     FormsModule,
     ReactiveFormsModule,
     AppRoutingModule,
+    BsDropdownModule.forRoot(),
     TemplateFormModule,
     DataFormModule
   ],

@@ -4,6 +4,7 @@ import { HttpClient } from '@angular/common/http';
 import { StatesService } from '../shared/services/states.service';
 import { State } from '../shared/models/state';
 import { ConsultaCepService } from '../shared/services/consulta-cep.service';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: "app-data-form",
@@ -12,7 +13,7 @@ import { ConsultaCepService } from '../shared/services/consulta-cep.service';
 })
 export class DataFormComponent implements OnInit {
   formulario: FormGroup;
-  estados: State[];
+  estados: Observable<State[]>;
 
   constructor(
     private formBuilder: FormBuilder, 
@@ -27,10 +28,12 @@ export class DataFormComponent implements OnInit {
     //   inputEmail: new FormControl(null)
     // });
 
-    this.statesService.list().subscribe((dados: State[]) => {
-      console.log(dados);
-      this.estados = dados;
-    })
+    // this.statesService.list().subscribe((dados: State[]) => {
+    //   console.log(dados);
+    //   this.estados = dados;
+    // })
+
+    this.estados = this.statesService.list();
 
     this.formulario = this.formBuilder.group({
       inputName: [null, [Validators.required, Validators.minLength(3)]],
@@ -42,7 +45,7 @@ export class DataFormComponent implements OnInit {
         inputLogradouro: [null],
         inputBairro: [null],
         inputCidade: [null],
-        inputEstado: [null]
+        selectEstado: [null]
       })
     });
   }
@@ -98,7 +101,7 @@ export class DataFormComponent implements OnInit {
         inputComplemento: dados.complemento,
         inputBairro: dados.bairro,
         inputCidade: dados.localidade,
-        inputEstado: dados.uf
+        selectEstado: dados.uf
       }
     });
     this.formulario.get("inputName").setValue("Vinicius");
