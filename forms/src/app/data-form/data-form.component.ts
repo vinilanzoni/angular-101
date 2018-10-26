@@ -5,6 +5,7 @@ import { StatesService } from '../shared/services/states.service';
 import { State } from '../shared/models/state';
 import { ConsultaCepService } from '../shared/services/consulta-cep.service';
 import { Observable } from 'rxjs';
+import { EmployeeService } from '../shared/services/employee.service';
 
 @Component({
   selector: "app-data-form",
@@ -14,13 +15,15 @@ import { Observable } from 'rxjs';
 export class DataFormComponent implements OnInit {
   formulario: FormGroup;
   estados: Observable<State[]>;
+  cargos: any[];
 
   constructor(
-    private formBuilder: FormBuilder, 
+    private formBuilder: FormBuilder,
     private http: HttpClient,
     private statesService: StatesService,
-    private cepService: ConsultaCepService
-    ) {}
+    private cepService: ConsultaCepService,
+    private employeeService: EmployeeService
+  ) {}
 
   ngOnInit() {
     // this.formulario = new FormGroup({
@@ -35,6 +38,8 @@ export class DataFormComponent implements OnInit {
 
     this.estados = this.statesService.list();
 
+    this.cargos = this.employeeService.getFunctions();
+
     this.formulario = this.formBuilder.group({
       inputName: [null, [Validators.required, Validators.minLength(3)]],
       inputEmail: [null, [Validators.required, Validators.email]],
@@ -46,23 +51,27 @@ export class DataFormComponent implements OnInit {
         inputBairro: [null],
         inputCidade: [null],
         selectEstado: [null]
-      })
+      }),
+      selectCargo: [null]
     });
   }
 
   onSubmit() {
     console.log(this.formulario);
-    if(this.formulario.valid) {
+    if (this.formulario.valid) {
       this.http
         .post("https://httpbin.org/post", JSON.stringify(this.formulario.value))
-        .subscribe((res) => {
+        .subscribe(
+          res => {
             console.log(res);
             this.formulario.reset();
-          }, (err: any) => {
+          },
+          (err: any) => {
             console.log(err);
-          });
+          }
+        );
     } else {
-      console.log("Formulário inválido")
+      console.log("Formulário inválido");
       this.checkValidations(this.formulario);
     }
   }
@@ -71,7 +80,7 @@ export class DataFormComponent implements OnInit {
     Object.keys(formGroup.controls).forEach(key => {
       const control = formGroup.get(key);
       control.markAsTouched();
-      if(control instanceof FormGroup) {
+      if (control instanceof FormGroup) {
         this.checkValidations(control);
       }
     });
@@ -110,9 +119,21 @@ export class DataFormComponent implements OnInit {
   consultaCEP() {
     let cep = this.formulario.get("groupEndereco.inputCep").value;
 
-    this.cepService.consultaCEP(cep).subscribe((dados) => {
+    this.cepService.consultaCEP(cep).subscribe(dados => {
       this.populateForm(dados);
     });
+  }
 
+  setCargo() {
+    const cargo = {
+      nome: "Desenvolvedor",
+      nivel: "Sênior",
+      descricao: "Desenvolvedor Sênior"
+    };
+    this.formulario.get("selectCargo").setValue(cargo);
+  }
+
+  checkFunctions(obj1, obj2) {
+    return obj1 && obj2 ? (obj1.nome === obj2.nome && obj1.nivel === obj2.nivel) : obj1 == obj2;
   }
 }
