@@ -7,6 +7,8 @@ import { ConsultaCepService } from '../shared/services/consulta-cep.service';
 import { Observable } from 'rxjs';
 import { EmployeeService } from '../shared/services/employee.service';
 import { FormValidations } from '../shared/form-validations';
+import { VerificaEmailService } from './services/verifica-email.service';
+import { map } from 'rxjs/operators';
 
 @Component({
   selector: "app-data-form",
@@ -19,14 +21,15 @@ export class DataFormComponent implements OnInit {
   cargos: any[];
   tecnologias: any[];
   newsletterOpts: any[];
-  cursos = ['Angular', 'React', 'Spring', '.Net'];
+  cursos = ["Angular", "React", "Spring", ".Net"];
 
   constructor(
     private formBuilder: FormBuilder,
     private http: HttpClient,
     private statesService: StatesService,
     private cepService: ConsultaCepService,
-    private employeeService: EmployeeService
+    private employeeService: EmployeeService,
+    private verficaEmailService: VerificaEmailService
   ) {}
 
   ngOnInit() {
@@ -40,19 +43,35 @@ export class DataFormComponent implements OnInit {
     //   this.estados = dados;
     // })
 
+    // this.verficaEmailService.verificarEmail('email@email.com').subscribe();
+
     this.estados = this.statesService.list();
 
     this.cargos = this.employeeService.getFunctions();
 
     this.tecnologias = this.employeeService.getKnowledges();
 
-    this.newsletterOpts = [{ name: "Yes", value: "yes" }, { name: "No", value: "no" }];
-    this.cursos = ['Angular', 'React', 'Spring', '.Net'];
+    this.newsletterOpts = [
+      { name: "Yes", value: "yes" },
+      { name: "No", value: "no" }
+    ];
+    this.cursos = ["Angular", "React", "Spring", ".Net"];
 
     this.formulario = this.formBuilder.group({
       inputName: [null, [Validators.required, Validators.minLength(3)]],
-      inputEmail: [null, [Validators.required, Validators.email]],
-      inputConfirmarEmail: [null, [Validators.required, Validators.email, FormValidations.equalsTo('inputEmail')]],
+      inputEmail: [
+        null,
+        [Validators.required, Validators.email],
+        this.validarEmail.bind(this)
+      ],
+      inputConfirmarEmail: [
+        null,
+        [
+          Validators.required,
+          Validators.email,
+          FormValidations.equalsTo("inputEmail")
+        ]
+      ],
       groupEndereco: this.formBuilder.group({
         inputCep: [null, [Validators.required, FormValidations.cepValidor]],
         inputNumero: [null, [Validators.required]],
@@ -71,17 +90,20 @@ export class DataFormComponent implements OnInit {
   }
 
   buildCourses() {
-    let values = this.cursos.map((v) => {
+    let values = this.cursos.map(v => {
       new FormControl(false);
     });
-    return this.formBuilder.array(values, FormValidations.requiredMinCheckbox(1));
+    return this.formBuilder.array(
+      values,
+      FormValidations.requiredMinCheckbox(1)
+    );
   }
 
   onSubmit() {
     let valueSubmit = Object.assign({}, this.formulario.value);
     valueSubmit = Object.assign(valueSubmit, {
       checkCursos: valueSubmit.checkCursos
-        .map((v, i) => v ? this.cursos[i] : null )
+        .map((v, i) => (v ? this.cursos[i] : null))
         .filter(v => v != null)
     });
 
@@ -126,7 +148,15 @@ export class DataFormComponent implements OnInit {
   }
 
   checkRequired(field: string) {
-    return (this.formulario.get(field).hasError('required') && this.formulario.get(field).touched);
+    return (
+      this.formulario.get(field).hasError("required") &&
+      this.formulario.get(field).touched
+    );
+  }
+
+  emailErrored(field){
+    return this.formulario.get(field).hasError("required") &&
+      this.formulario.get(field).touched;
   }
 
   invalidEmail(field) {
@@ -167,12 +197,20 @@ export class DataFormComponent implements OnInit {
   }
 
   checkFunctions(obj1, obj2) {
-    return obj1 && obj2 ? (obj1.nome === obj2.nome && obj1.nivel === obj2.nivel) : obj1 == obj2;
+    return obj1 && obj2
+      ? obj1.nome === obj2.nome && obj1.nivel === obj2.nivel
+      : obj1 == obj2;
   }
 
   setTecnologias() {
     this.formulario
       .get("selectTecnologias")
       .setValue(["csharp", "java", "javascript"]);
+  }
+
+  validarEmail(formControl: FormControl) {
+    return this.verficaEmailService
+      .verificarEmail(formControl.value)
+      .pipe(map(emailExiste => (emailExiste ? { emailInvalido: true } : null)));
   }
 }

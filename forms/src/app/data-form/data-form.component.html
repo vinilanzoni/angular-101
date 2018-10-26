@@ -7,8 +7,10 @@
   <div class="form-group">
     <label for="inputEmail">Email</label>
     <input type="email" class="form-control" id="inputEmail" formControlName="inputEmail" [class.is-invalid]="inputErrored('inputEmail')">
-    <app-form-control-error [showError]="inputErrored('inputEmail')" errorMessage="'Email' é obrigatório"></app-form-control-error>
+    <app-form-control-error [showError]="emailErrored('inputEmail')" errorMessage="'Email' é obrigatório"></app-form-control-error>
     <app-form-control-error [showError]="invalidEmail('inputEmail')" errorMessage="'Email' inválido"></app-form-control-error>
+    <app-form-control-error [showError]="formulario.get('inputEmail').status === 'PENDING'" errorMessage="Validando..."></app-form-control-error>
+    <app-form-control-error [showError]="formulario.get('inputEmail').hasError('emailInvalido')" errorMessage="'Email' já cadastrado"></app-form-control-error>
   </div>
   <div class="form-group">
     <label for="inputConfirmarEmail">Confirmar Email</label>
