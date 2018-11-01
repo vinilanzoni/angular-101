@@ -4,7 +4,7 @@
     <button type="button" class="btn btn-primary btn-sm float-right">Adicionar</button>
   </div>
   <div class="card-body">
-    <table class="table table-striped">
+    <table class="table table-striped" *ngIf="cursos$ | async as cursos; else loading">
       <thead>
         <tr>
           <th>#</th>
@@ -25,5 +25,9 @@
         </tr>
       </tbody>
     </table>
+
+    <ng-template #loading>
+      <span>Carregando cursos...</span>
+    </ng-template>
   </div>
 </div>
